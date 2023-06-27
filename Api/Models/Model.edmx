@@ -4,38 +4,39 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ApiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ApiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="usuarios">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="usuario" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" />
           <Property Name="contrasena" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="estado" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="token" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="tipo_usuario" Type="int" />
         </EntityType>
         <EntityContainer Name="ApiModelStoreContainer">
           <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ApiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ApiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="usuarios" EntityType="ApiModel.usuario" />
+        </EntityContainer>
         <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="usuario1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="contrasena" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="token" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="usuario1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contrasena" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="token" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="tipo_usuario" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="ApiEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="usuarios" EntityType="Self.usuario" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -45,11 +46,12 @@
           <EntitySetMapping Name="usuarios">
             <EntityTypeMapping TypeName="ApiModel.usuario">
               <MappingFragment StoreEntitySet="usuarios">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="usuario1" ColumnName="usuario" />
-                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
                 <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="usuario1" ColumnName="usuario" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

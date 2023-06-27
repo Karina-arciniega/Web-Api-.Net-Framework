@@ -19,5 +19,6 @@ namespace Api.Models
         public string contrasena { get; set; }
         public string estado { get; set; }
         public string token { get; set; }
+        public Nullable<int> tipo_usuario { get; set; }
     }
 }

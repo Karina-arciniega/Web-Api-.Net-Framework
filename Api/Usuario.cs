@@ -8,5 +8,7 @@ namespace Api
         public string contrasena { get; set; }
         public string estado { get; set;}
         public string token { get; set;}
+
+        public int tipo_usuario { get; set; }
     }
 }
